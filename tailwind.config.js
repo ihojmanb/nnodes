@@ -1,7 +1,13 @@
 module.exports = {
-  purge: [
-    "./app/**/*.html.erb"
-  ],
+  mode: "jit",
+  purge: {
+    enabled: ["production", "staging"].includes(process.env.NODE_ENV),
+    content: [
+      "./app/**/*.html.erb",
+      "./app/helpers/**/*.rb",
+      "./app/javascript/**/*.js",
+    ],
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
@@ -9,5 +15,10 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
-}
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/line-clamp"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
+};
