@@ -1,3 +1,22 @@
-<% provide(:title, "Add Player") %>
-<h1>Add Player</h1>
-<p>here we will add new players to Ruleta</p>
+<% provide(:title, "Agregar Jugador") %>
+<h1>Agregar Jugador</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: @player, local: true) do |f| %>
+      <%= render 'shared/error_messages' %>
+      <%= f.label :first_name, "Nombre" %>
+      <%= f.text_field :first_name, class: 'form_control' %>
+
+      <%= f.label :last_name, "Apellido", class: 'form_control' %>
+      <%= f.text_field :last_name %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form_control' %>
+
+      <%= f.label :balance %>
+      <%= f.number_field :balance, class: 'form_control' %>
+
+      <%= f.submit "Crear Jugador", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
