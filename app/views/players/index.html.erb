@@ -1,0 +1,30 @@
+<% provide(:title, "Jugadores")%>
+<h2>Jugadores</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Email</th>
+      <th scope="col">Balance</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @players.each do |player| %>
+      <tr>
+        <th scope="row"><%= player.id %></th>
+        <td><%= player.first_name %></td>
+        <td><%= player.last_name %></td>
+        <td><%= player.email %></td>
+        <td>
+        <%= number_to_currency(player.balance, delimiter: "." , precision: 0 ) %>
+        CLP
+        </td>
+        <td><%= link_to "Editar", edit_player_path(player) %>
+        </td>
+      </tr>
+    <% end  %>
+  </tbody>
+</table>
