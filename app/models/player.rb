@@ -6,7 +6,7 @@ class Player < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
-
+  has_many :bets
 
   private
     def downcase_email
