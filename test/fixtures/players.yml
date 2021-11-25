@@ -1,2 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+ianiv:
+  first_name: ianiv
+  last_name: hojman
+  email: ihojmanb@gmail.com
+  balance: 10000

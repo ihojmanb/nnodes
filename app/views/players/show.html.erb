@@ -1,2 +1,9 @@
-<%= @player.first_name %> <%= @player.last_name %>
-balance: <%= @player.balance %>
+
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h3 class="card-title"><%= @player.first_name %> <%= @player.last_name %></h5>
+    <p class="card-text">balance: <%= number_to_currency(@player.balance, delimiter: "." , precision: 0 )%> CLP</p>
+    <a href="#" class="card-link"><%= link_to "Editar", edit_player_path %></a>
+  </div>
+</div>

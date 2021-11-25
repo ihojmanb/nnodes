@@ -28,7 +28,4 @@ class AddPlayersTest < ActionDispatch::IntegrationTest
     assert_template 'players/show'
   end
 
-
-
-
 end

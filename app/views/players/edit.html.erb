@@ -1,0 +1,22 @@
+<% provide(:title, "Editar Jugador") %>
+<h1>Editar Jugador</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: @player, local: true) do |f| %>
+      <%= render 'shared/error_messages' %>
+      <%= f.label :first_name, "Nombre" %>
+      <%= f.text_field :first_name, class: 'form_control' %>
+
+      <%= f.label :last_name, "Apellido", class: 'form_control' %>
+      <%= f.text_field :last_name %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form_control' %>
+      
+      <%= f.label :balance %>
+      <%= f.number_field :balance, class: 'form_control' %>
+
+      <%= f.submit "Editar Jugador", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
