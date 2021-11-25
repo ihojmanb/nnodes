@@ -18,3 +18,13 @@ Player.create!(first_name: "Ianiv",
                last_name: last_name,
                email: email)
 end
+
+players = Player.order(:created_at).take(5)
+25.times do
+    players.each do |player|
+        bet_amount = player.get_bet_amount()
+        bet_color = player.get_bet_color()
+        player.bets.create!(amount:bet_amount, color: bet_color)
+    end
+    
+end
