@@ -23,7 +23,7 @@ class PlayersController < ApplicationController
 
   private
     def user_params
-      params.require(:player).permit(:first_name, :last_name, :email, :balance)
+      params.require(:player).permit(:first_name, :last_name, :email)
     end
 
 
