@@ -24,7 +24,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'rails-i18n', '~> 6.0.0' # For 6.0.0 or higher
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-
+gem 'will_paginate', '3.1.8'
+gem 'bootstrap-will_paginate', '1.0.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 

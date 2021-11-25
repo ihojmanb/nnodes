@@ -3,7 +3,7 @@ require "test_helper"
 class BetTest < ActiveSupport::TestCase
   def setup
     @player = players(:ianiv)
-    @bet = @player.bets.build(amount:150)
+    @bet = @player.bets.build(amount:150, color:'Rojo')
   end
 
   test "bet should be valid" do 
@@ -22,6 +22,21 @@ class BetTest < ActiveSupport::TestCase
 
   test "amount should be integer" do 
     @bet.amount = 'nuevo amount'
+    assert_not @bet.valid?
+  end
+
+  test "color should be present" do 
+    @bet.color = nil
+    assert_not @bet.valid?
+  end
+
+  test "color should be string" do
+    @bet.color = 10
+    assert_not @bet.valid?
+  end
+
+  test "color should be of a certain value" do 
+    @bet.color = 'Azul'
     assert_not @bet.valid?
   end
 

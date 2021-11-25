@@ -1,6 +1,7 @@
 class PlayersController < ApplicationController
   def show
     @player = Player.find(params[:id])
+    @bets = @player.bets.paginate(page: params[:page])
     # debugger
   end
 

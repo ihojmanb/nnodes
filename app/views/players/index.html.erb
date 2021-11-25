@@ -22,6 +22,7 @@
         <%= number_to_currency(player.balance, delimiter: "." , precision: 0 ) %>
         CLP
         </td>
+        <td><%= link_to "Ver Perfil", player_path(player) %>
         <td><%= link_to "Editar", edit_player_path(player) %>
         </td>
       </tr>
