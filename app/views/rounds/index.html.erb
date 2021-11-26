@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @rounds.each do |round| %>
+    <% @rounds.reverse_each do |round| %>
       <tr>
         <th scope="row"><%= round.id %></th>
         <td class= "<%= "#{round.color}" %> " ><%= round.color %></td>

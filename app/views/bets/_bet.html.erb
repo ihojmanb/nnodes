@@ -1,6 +1,7 @@
     <tr id="bet-<%= bet.id %>">
     <td><%= bet.round.id %></td>
-      <td><%= bet.amount %></td>
-      <td><%= bet.color %></td>
+      <td><%= number_to_currency(bet.amount, delimiter: "." , precision: 0 )%> CLP</td>
+      <td class= "<%= "#{bet.color}" %> " ><%= bet.color %></td>
+      <td class= "<%= "#{bet.round.color}" %> " ><%= bet.round.color %></td>
       <td><%= bet.created_at %></td>
     </tr>
