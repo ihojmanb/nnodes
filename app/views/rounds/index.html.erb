@@ -5,7 +5,7 @@
     <tr>
       <th scope="col">id</th>
       <th scope="col">resultado</th>
-      <% @players.sort_by(&:id) do |player| %>
+      <% @players.sort_by(&:id).each do |player| %>
         <th scope="col"><%= link_to "#{player.first_name}", player_path(player) %></th>
       <% end %>
       <%= will_paginate %>
