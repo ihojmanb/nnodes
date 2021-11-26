@@ -1,5 +1,3 @@
-
-
 @roulette = Roulette.create
 @roulette.result = @roulette.get_bet_color
 
@@ -19,18 +17,17 @@ Player.create!(first_name: "Ianiv",
                  roulette_id: @roulette.id)
 end
 
-case Rails.env
-when "development"
-  5.times do
-    @roulette.create_round
-    players = Player.order("created_at DESC")
-    players.each do |player|
-      bet_amount = player.get_bet_amount()
-      bet_color = player.get_bet_color()
-      player.roulette = @roulette
-      bet = player.bets.create!(amount: bet_amount, color: bet_color, round: @roulette.get_actual_round)
-      player.bet(bet)
-    end
+# case Rails.env
+# when "development"
+5.times do
+  @roulette.create_round
+  players = Player.order("created_at DESC")
+  players.each do |player|
+    bet_amount = player.get_bet_amount()
+    bet_color = player.get_bet_color()
+    player.roulette = @roulette
+    bet = player.bets.create!(amount: bet_amount, color: bet_color, round: @roulette.get_actual_round)
+    player.bet(bet)
   end
 end
-
+# end
