@@ -2,7 +2,12 @@ require "test_helper"
 
 class PlayerTest < ActiveSupport::TestCase
   def setup
-    @player = Player.new(first_name: "Ex", last_name: "Ample", email: "player@example.com")
+    @player = players(:ianiv)
+    @first_bet = bets(:first_ianiv_bet)
+    @second_bet = bets(:second_ianiv_bet)
+    @third_bet = bets(:third_ianiv_bet)
+    @player.bets << [@first_bet, @second_bet, @third_bet]
+    
   end
 
   test "should be vaild" do
@@ -127,6 +132,43 @@ class PlayerTest < ActiveSupport::TestCase
     bet_color = @player.get_bet_color
     allowed_colors = ['Rojo', 'Negro', 'Verde']
     assert allowed_colors.include? bet_color
+  end
+
+  test "bet method discounts bet.amount from player.balance" do 
+    @player_balance_before_bet = @player.balance
+    @player.bet(@first_bet)
+    @player_balance_after_bet = @player.balance
+    assert @player_balance_after_bet <= @player_balance_before_bet
+  end
+  
+  test "update_balance when player wins Rojo" do
+    bet_amount = @first_bet.amount
+    @player.bet(@first_bet)
+    player_balance_after_bet = @player.balance
+    @player.check_bet_results('Rojo', @first_bet)
+    player_balance_after_round = @player.balance
+    assert_equal player_balance_after_bet + 2*bet_amount, player_balance_after_round
+  end
+
+  test "update_balance when player wins Negro" do
+    bet_amount = @second_bet.amount
+    @player.bet(@second_bet)
+    player_balance_after_bet = @player.balance
+    @player.check_bet_results('Negro', @second_bet)
+    player_balance_after_round = @player.balance
+    assert_equal player_balance_after_bet + 2*bet_amount, player_balance_after_round
+  end
+
+  test "update_balance when player wins Verde" do
+    bet_amount = @third_bet.amount
+    @player.bet(@third_bet)
+    player_balance_after_bet = @player.balance
+    @player.check_bet_results('Verde', @third_bet)
+    player_balance_after_round = @player.balance
+    assert_equal player_balance_after_bet + 15*bet_amount, player_balance_after_round
+  end
+
+  test "update_balance when player loses" do
   end
 
 end

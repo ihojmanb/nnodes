@@ -5,3 +5,9 @@ ianiv:
   last_name: hojman
   email: ihojmanb@gmail.com
   balance: 10000
+
+alejandro:
+  first_name: alejandro
+  last_name: betancourt
+  email: abetancourt@gmail.com
+  balance: 10000

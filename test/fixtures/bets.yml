@@ -1,20 +1,43 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-first_bet:
-  amount: 666
+first_ianiv_bet:
+  amount: 600
+  color: Rojo
   created_at: <%= 15.minutes.ago %>
   player: ianiv
 
 
-second_bet:
+second_ianiv_bet:
   amount: 78
+  color: Negro
   created_at: <%= 1.year.ago %>
   player: ianiv
 
-third_bet:
+third_ianiv_bet:
   amount: 1573
+  color: Verde
   created_at: <%= 3.hours.ago %>
   player: ianiv
+
+first_alejandro_bet:
+  amount: 150
+  color: Negro
+  created_at: <%= 15.minutes.ago %>
+  player: alejandro
+
+
+second_alejandro_bet:
+  amount: 65
+  color: Verde
+  created_at: <%= 1.year.ago %>
+  player: alejandro
+
+third_alejandro_bet:
+  amount: 991
+  color: Rojo
+  created_at: <%= 3.hours.ago %>
+  player: alejandro
+
 
 
 most_recent:

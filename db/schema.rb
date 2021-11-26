@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_25_184506) do
+ActiveRecord::Schema.define(version: 2021_11_26_011544) do
 
   create_table "bets", force: :cascade do |t|
     t.integer "amount"
@@ -18,8 +18,10 @@ ActiveRecord::Schema.define(version: 2021_11_25_184506) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "color"
+    t.integer "round_id"
     t.index ["player_id", "created_at"], name: "index_bets_on_player_id_and_created_at"
     t.index ["player_id"], name: "index_bets_on_player_id"
+    t.index ["round_id"], name: "index_bets_on_round_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -32,5 +34,12 @@ ActiveRecord::Schema.define(version: 2021_11_25_184506) do
     t.index ["email"], name: "index_players_on_email", unique: true
   end
 
+  create_table "rounds", force: :cascade do |t|
+    t.string "color"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   add_foreign_key "bets", "players"
+  add_foreign_key "bets", "rounds"
 end

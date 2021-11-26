@@ -36,6 +36,29 @@ class Player < ApplicationRecord
   end
 
 
+  def bet(bet)
+    update_balance(balance - bet.amount)
+  end
+
+  def check_bet_results(result, bet)
+    new_balance = 0
+    if result == bet.color
+      if result == 'Verde'
+        new_balance = balance + bet.amount*15
+      else
+        new_balance = balance + bet.amount*2
+      end
+    else
+      new_balance = balance
+    end
+    update_balance(new_balance)
+  end
+  
+  def update_balance(new_balance)
+    update(balance: new_balance)
+  end
+
+
   private
     def downcase_email
         email.downcase!
