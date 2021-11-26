@@ -34,6 +34,7 @@ end
 task add_money_to_each_player: :environment do
     players = Player.order("created_at DESC")
     players.each do |player|
-        players.u
+        player_balance = player.balance
+        player.update_balance(player_balance + 10000)
     end
   end
