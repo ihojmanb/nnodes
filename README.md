@@ -1,7 +1,7 @@
 # README
 0. first, lets clone the repository and get into the directory:
 ```
-git clone .... 
+git clone https://github.com/ihojmanb/nnodes.git 
 cd nnodes
 ```
 1. To get started install the required gems:
