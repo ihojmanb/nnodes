@@ -22,8 +22,9 @@ class Roulette < ApplicationRecord
   end
 
   def create_round
-    new_round = rounds.create!(color: get_bet_color)
+    new_round = rounds.new(color: get_bet_color)
     update_actual_round_id(new_round.id)
+    new_round.save
   end
 
   def set_color_to_actual_round(color)
