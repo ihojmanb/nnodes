@@ -15,6 +15,7 @@ Player.create!(first_name: "Ianiv",
                  last_name: last_name,
                  email: email,
                  roulette_id: @roulette.id)
+                 
 end
 
 # case Rails.env
