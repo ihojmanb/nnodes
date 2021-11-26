@@ -2,6 +2,11 @@ class Roulette < ApplicationRecord
   include Colorable
   has_many :rounds
 
+
+  def self.say_hi
+    puts "hihihihihih"
+  end
+
   def create_round
     new_round = rounds.create!(color: get_bet_color)
     update_actual_round_id(new_round.id)
