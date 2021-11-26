@@ -1,0 +1,31 @@
+<% provide(:title, "Rondas")%>
+<h2>Rondas</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">resultado</th>
+      <% @bets.each do |bet| %>
+        <th scope="col"><%= link_to "#{bet.player.first_name}", player_path(bet.player) %></th>
+      <% end %>
+      <%= will_paginate %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @rounds.each do |round| %>
+      <tr>
+        <th scope="row"><%= round.id %></th>
+        <td class= "<%= "#{round.color}" %> " ><%= round.color %></td>
+        <% @bets.each do |bet| %>
+          <td class= "<%= "#{bet.color}" %> "><%= "#{number_to_currency(bet.amount, delimiter: "." , precision: 0 )}" %></td>
+        <% end %>
+        <%= will_paginate %>
+        <td>
+          <%# <%= number_to_currency(player.balance, delimiter: "." , precision: 0 ) %>
+        </td>
+      </td>
+    </tr>
+  <% end  %>
+</tbody>
+</table>
+<%= will_paginate %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_26_011544) do
+ActiveRecord::Schema.define(version: 2021_11_26_095831) do
 
   create_table "bets", force: :cascade do |t|
     t.integer "amount"
@@ -34,12 +34,22 @@ ActiveRecord::Schema.define(version: 2021_11_26_011544) do
     t.index ["email"], name: "index_players_on_email", unique: true
   end
 
+  create_table "roulettes", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "result"
+    t.integer "actual_round_id"
+  end
+
   create_table "rounds", force: :cascade do |t|
     t.string "color"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "roulette_id"
+    t.index ["roulette_id"], name: "index_rounds_on_roulette_id"
   end
 
   add_foreign_key "bets", "players"
   add_foreign_key "bets", "rounds"
+  add_foreign_key "rounds", "roulettes"
 end

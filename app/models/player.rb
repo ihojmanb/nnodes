@@ -1,4 +1,5 @@
 class Player < ApplicationRecord
+  include Colorable
   before_save :downcase_email
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :first_name, presence: true, length: { maximum: 50 }
@@ -10,31 +11,13 @@ class Player < ApplicationRecord
 
   def get_bet_amount
     if balance <= 1000 && balance >= 0
-      balance      
+      balance
     else
       amount_percentage = rand(0.08..0.15).round(2)
       amount = Integer(balance * amount_percentage)
       amount
     end
-
   end
-
-  def get_random_integer(lower_bound, upper_bound)
-    rand(lower_bound..upper_bound)
-  end
-
-  def get_bet_color
-    get_color(get_random_integer(1, 100))
-  end
-
-  def get_color(random_integer)
-    if random_integer > 100 || random_integer < 1
-      raise "integer out of bound [1, 100]"
-    else
-      _get_color(random_integer)
-    end
-  end
-
 
   def bet(bet)
     update_balance(balance - bet.amount)
@@ -43,34 +26,24 @@ class Player < ApplicationRecord
   def check_bet_results(result, bet)
     new_balance = 0
     if result == bet.color
-      if result == 'Verde'
-        new_balance = balance + bet.amount*15
+      if result == "Verde"
+        new_balance = balance + bet.amount * 15
       else
-        new_balance = balance + bet.amount*2
+        new_balance = balance + bet.amount * 2
       end
     else
       new_balance = balance
     end
     update_balance(new_balance)
   end
-  
+
   def update_balance(new_balance)
     update(balance: new_balance)
   end
 
-
   private
-    def downcase_email
-        email.downcase!
-    end
 
-    def _get_color(random_integer)
-      if random_integer >= 1 && random_integer <= 49
-        'Rojo'
-      elsif random_integer >= 50 && random_integer <= 98
-        'Negro'
-      elsif  random_integer >= 99 && random_integer <= 100
-        'Verde'
-      end
-    end
+  def downcase_email
+    email.downcase!
+  end
 end

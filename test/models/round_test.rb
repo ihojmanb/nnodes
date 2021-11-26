@@ -2,7 +2,9 @@ require "test_helper"
 
 class RoundTest < ActiveSupport::TestCase
   def setup
+    @roulette = Roulette.create!
     @first_round = rounds(:first_round)
+    @first_round.roulette = @roulette
     @player1 = players(:ianiv)
     @player2 = players(:alejandro)
     @first_player1_bet = @player1.bets.build(amount: 600, color: 'Rojo')
