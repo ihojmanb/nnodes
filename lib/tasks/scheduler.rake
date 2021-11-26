@@ -4,7 +4,11 @@ task :first_task => environment do
     puts "first task working ..."
     puts "done."
 end
+task :play_roulette => :environment do
+  puts "Playing a Roulette round ..."
 
+  puts "done."
+end
 
 # task :play_roulette => :environment do
 #   puts "Playing a Roulette round ..."
