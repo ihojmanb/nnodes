@@ -1,5 +1,6 @@
 class Player < ApplicationRecord
   include Colorable
+  require 'rest-client'
   before_save :downcase_email
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :first_name, presence: true, length: { maximum: 50 }
@@ -8,14 +9,24 @@ class Player < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
   has_many :bets
+  belongs_to :roulette
+
 
   def get_bet_amount
     if balance <= 1000 && balance >= 0
       balance
     else
-      amount_percentage = rand(0.08..0.15).round(2)
-      amount = Integer(balance * amount_percentage)
-      amount
+      max_temperature = roulette.get_max_forecast_temperature_in_seven_day
+      if max_temperature > 29
+        amount_percentage = rand(0.03..0.07).round(2)
+        amount = Integer(balance * amount_percentage)
+        amount
+      else
+        amount_percentage = rand(0.08..0.15).round(2)
+        amount = Integer(balance * amount_percentage)
+        amount
+      end
+
     end
   end
 

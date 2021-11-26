@@ -8,7 +8,12 @@ end
 
 task :play_roulette => :environment do
   puts "Playing a Roulette round ..."
-  @roulette = Roulette.create
+  if Roulette.first.nil?
+    @roulette = Roulette.create
+  else
+    puts "we already got a Roulette!"
+    @roulette = Roulette.first
+  end
   @roulette.result = @roulette.get_bet_color
   @roulette.create_round
 
@@ -24,9 +29,6 @@ task :play_roulette => :environment do
   puts "done."
 end
 
-
-
-
 task add_money_to_each_player: :environment do
     players = Player.order("created_at DESC")
     players.each do |player|
@@ -34,3 +36,15 @@ task add_money_to_each_player: :environment do
         player.update_balance(player_balance + 10000)
     end
   end
+
+  task get_max_temperature_for_next_seven_days: :environment do
+    puts "Getting max temperature for next seven days ..."
+    if Roulette.first.nil?
+      @roulette = Roulette.create
+    else
+      puts "we already got a Roulette!"
+      @roulette = Roulette.first
+    end
+    @roulette.get_max_forecast_temperature_in_seven_day
+  end
+ 

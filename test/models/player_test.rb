@@ -2,7 +2,11 @@ require "test_helper"
 
 class PlayerTest < ActiveSupport::TestCase
   def setup
+    @roulette = Roulette.create
+    @roulette.get_bet_color
+    @roulette.temperature = 30
     @player = players(:ianiv)
+    @player.roulette_id = @roulette.id
     @first_bet = bets(:first_ianiv_bet)
     @second_bet = bets(:second_ianiv_bet)
     @third_bet = bets(:third_ianiv_bet)
@@ -68,12 +72,19 @@ class PlayerTest < ActiveSupport::TestCase
     assert_not duplicate_player.valid?
   end
 
-  test "player bets percentage of balance" do 
+  test "player bets a percentage of balance" do 
     @player.balance = 5000
     bet_amount = @player.get_bet_amount()
     assert bet_amount.is_a? Integer
-    assert bet_amount >= 0.08 * @player.balance
-    assert bet_amount <= 0.15 * @player.balance
+    
+    if @roulette.temperature > 29
+      assert bet_amount >= 0.03 * @player.balance
+      assert bet_amount <= 0.07 * @player.balance
+    else
+      assert bet_amount >= 0.08 * @player.balance
+      assert bet_amount <= 0.15 * @player.balance
+    end
+    
   end
 
   test "player bets All-in" do 

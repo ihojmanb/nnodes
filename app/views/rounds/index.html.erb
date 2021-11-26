@@ -20,8 +20,6 @@
         <% round.bets.each do |bet| %>
           <td class= "<%= "#{bet.color}" %> "><%= "#{number_to_currency(bet.amount, delimiter: "." , precision: 0 )}" %></td>
         <% end %>
-        <%= will_paginate %>
-
         <td>
           <%# <%= number_to_currency(player.balance, delimiter: "." , precision: 0 ) %>
         </td>
@@ -30,4 +28,3 @@
   <% end  %>
 </tbody>
 </table>
-<%= will_paginate %>

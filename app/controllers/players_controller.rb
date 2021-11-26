@@ -14,7 +14,9 @@ class PlayersController < ApplicationController
   end
 
   def create
+    @roulette = Roulette.first
     @player = Player.new(create_player_params)
+    @player.roulette_id = @roulette.id
     if @player.save
       flash[:success] = "Nuevo jugador creado exitosamente"
       redirect_to @player
