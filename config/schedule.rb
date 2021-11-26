@@ -24,6 +24,7 @@ set :environment, "development"
 
 # Learn more: http://github.com/javan/whenever
 
-every 3.seconds do
-
+every 30.minute do
+    runner "Roulette.say_hi"
+    rake "say_hi_task"
 end

@@ -19,22 +19,22 @@ Player.create!(first_name: "Ianiv",
                  email: email)
 end
 
-@roulette = Roulette.create
-@roulette.result = @roulette.get_bet_color
-@roulette.create_round
-# @round = Round.create!(color: 'Rojo')
+# @roulette = Roulette.create
+# @roulette.result = @roulette.get_bet_color
+# @roulette.create_round
+# # @round = Round.create!(color: 'Rojo')
 
-# @roulette.actual_round = @round
+# # @roulette.actual_round = @round
 
-players = Player.order('created_at DESC')
-players.each do |player|
-  bet_amount = player.get_bet_amount()
-  bet_color = player.get_bet_color()
-  bet = player.bets.create!(amount: bet_amount, color: bet_color, round: @roulette.get_actual_round)
-  player.bet(bet)
-end
+# players = Player.order('created_at DESC')
+# players.each do |player|
+#   bet_amount = player.get_bet_amount()
+#   bet_color = player.get_bet_color()
+#   bet = player.bets.create!(amount: bet_amount, color: bet_color, round: @roulette.get_actual_round)
+#   player.bet(bet)
+# end
 
-@roulette.notify_results
+# @roulette.notify_results
 # players = Player.order(:created_at).take(5)
 # 25.times do
 #     players.each do |player|
